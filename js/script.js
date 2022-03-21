@@ -27,7 +27,7 @@ const net = {
   y: 0,
   width: netWidth,
   height: netHeight,
-  color: "#FFF"
+  color: "black"
 };
 
 // user paddle
@@ -36,7 +36,7 @@ const user = {
   y: canvas.height / 2 - paddleHeight / 2,
   width: paddleWidth,
   height: paddleHeight,
-  color: '#FFF',
+  color: 'blue',
   score: 0
 };
 
@@ -45,7 +45,7 @@ const ai = {
   y: canvas.height / 2 - paddleHeight / 2,
   width: paddleWidth,
   height: paddleHeight,
-  color: '#FFF',
+  color: 'red',
   score: 0
 };
 
@@ -57,7 +57,7 @@ const ball = {
   speed: 7,
   velocityX: 5,
   velocityY: 5,
-  color: '#05EDFF'
+  color: 'yellow'
 };
 
 /* objects declaration ends */
@@ -74,8 +74,8 @@ function drawNet() {
 
 // function to draw score
 function drawScore(x, y, score) {
-  ctx.fillStyle = '#fff';
-  ctx.font = '35px sans-serif';
+  ctx.fillStyle = 'black';
+  ctx.font = '35px Games,sans-serif'; // Gaming fonts
 
   // syntax --> fillText(text, x, y)
   ctx.fillText(score, x, y);
@@ -186,6 +186,7 @@ function update() {
     scoreSound.play();
     // then user scored 1 point
     user.score += 1;
+    alert("User scored a point");
     reset();
   }
 
@@ -195,7 +196,18 @@ function update() {
     scoreSound.play();
     // then ai scored 1 point
     ai.score += 1;
+    alert("Ai scored a point");
+    if(ai.score == 20)
+    {
+      alert("Ai wins the Game");
+    }
+    
     reset();
+  }
+  if(user.score == 20|| ai.score ==20)
+  {
+    alert("Game Over");
+    score.reset();
   }
 
   // move the ball
@@ -236,7 +248,7 @@ function update() {
 // render function draws everything on to canvas
 function render() {
   // set a style
-  ctx.fillStyle = "#000"; /* whatever comes below this acquires black color (#000). */
+  ctx.fillStyle = "#648c11"; /* whatever comes below this acquires black color (#000). */
   // draws the black board
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
